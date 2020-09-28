@@ -5,7 +5,7 @@ var tableData = data;
 // Select the button
 var button = d3.select('#filter-btn');
 // Select the form
-var form = d3.select('form');
+var form = d3.select('.form-group');
 // Select table body
 var tbody = d3.select('tbody');
 
@@ -28,18 +28,44 @@ function runEnter() {
     // Prevent the page from refreshing
     d3.event.preventDefault();
 
-    // Select the input element
-    var inputElement = d3.select('#datetime');
+    // Select the input element and get the value property
+    // DateTime
+    var inputDateTime = d3.select('#datetime').property('value');
+    // City
+    var inputCity = d3.select('#city').property('value').toLowerCase();
+    // State
+    var inputState = d3.select('#state').property('value').toLowerCase();
+    // Country
+    var inputCountry = d3.select('#country').property('value').toLowerCase();
+    // Shape
+    var inputShape = d3.select('#shape').property('value').toLowerCase();
 
-    // Get the value property of the input element
-    var inputValue = inputElement.property('value');
-
-    console.log(inputValue);
-
-    // Filter UFO sightings data based on date input
-    var filteredData = tableData.filter(ufoSightings => ufoSightings.datetime === inputValue);
-
-    console.log(filteredData);
+    // If statements to determine the input Element being filtered
+    // DateTime
+    if (inputDateTime) {
+        // Filter UFO sightings data based on date input
+        var filteredData = tableData.filter(ufoSightings => ufoSightings.datetime === inputDateTime);        
+    }
+    // City
+    if (inputCity) {
+        // Filter UFO sightings data based on date input
+        var filteredData = tableData.filter(ufoSightings => ufoSightings.city === inputCity);
+    }
+    // State
+    if (inputState) {
+        // Filter UFO sightings data based on date input
+        var filteredData = tableData.filter(ufoSightings => ufoSightings.state === inputState);
+    }
+    // Country
+    if (inputCountry) {
+        // Filter UFO sightings data based on date input
+        var filteredData = tableData.filter(ufoSightings => ufoSightings.country === inputCountry);
+    }
+    // Shape
+    if (inputShape) {
+        // Filter UFO sightings data based on date input
+        var filteredData = tableData.filter(ufoSightings => ufoSightings.shape === inputShape);
+    }
 
     // Reset the table before displaying filtered data
     tbody.html('');
