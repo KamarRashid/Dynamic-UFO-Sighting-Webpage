@@ -5,7 +5,7 @@ var tableData = data;
 // Select the button
 var button = d3.select('#filter-btn');
 // Select the form
-var form = d3.select('.form-group');
+var form = d3.selectAll('.filter');
 // Select table body
 var tbody = d3.select('tbody');
 
@@ -20,13 +20,14 @@ tableData.forEach(ufoSightings => {
 
 // Create event listeners
 button.on('click', runEnter);
-form.on('submit', runEnter);
+form.on('change', runEnter);
 
 // Create the event handle function
 function runEnter() {
 
     // Prevent the page from refreshing
     d3.event.preventDefault();
+    var filteredData = ""
 
     // Select the input element and get the value property
     // DateTime
@@ -44,27 +45,27 @@ function runEnter() {
     // DateTime
     if (inputDateTime) {
         // Filter UFO sightings data based on date input
-        var filteredData = tableData.filter(ufoSightings => ufoSightings.datetime === inputDateTime);        
+        filteredData = tableData.filter(ufoSightings => ufoSightings.datetime === inputDateTime);      
     }
     // City
     if (inputCity) {
         // Filter UFO sightings data based on date input
-        var filteredData = tableData.filter(ufoSightings => ufoSightings.city === inputCity);
+        filteredData = tableData.filter(ufoSightings => ufoSightings.city === inputCity);
     }
     // State
     if (inputState) {
         // Filter UFO sightings data based on date input
-        var filteredData = tableData.filter(ufoSightings => ufoSightings.state === inputState);
+        filteredData = tableData.filter(ufoSightings => ufoSightings.state === inputState);
     }
     // Country
     if (inputCountry) {
         // Filter UFO sightings data based on date input
-        var filteredData = tableData.filter(ufoSightings => ufoSightings.country === inputCountry);
+        filteredData = tableData.filter(ufoSightings => ufoSightings.country === inputCountry);
     }
     // Shape
     if (inputShape) {
         // Filter UFO sightings data based on date input
-        var filteredData = tableData.filter(ufoSightings => ufoSightings.shape === inputShape);
+        filteredData = tableData.filter(ufoSightings => ufoSightings.shape === inputShape);
     }
 
     // Reset the table before displaying filtered data
